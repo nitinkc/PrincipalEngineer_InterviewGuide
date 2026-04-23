@@ -1,0 +1,76 @@
+site_name: Principal Engineer - Interview Guide
+site_description: Comprehensive theoretical knowledge base for Principal Software Engineering roles — architecture, leadership, team dynamics, and systems thinking at scale.
+site_author: Nitin Kumar Chaurasia
+
+theme:
+  name: mkdocs
+  color_mode: auto
+  user_color_mode_toggle: true
+  highlightjs: true
+  hljs_languages:
+    - yaml
+    - java
+    - python
+    - javascript
+    - go
+    - sql
+    - bash
+
+plugins:
+  - search
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_div_format
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.tabbed:
+      alternate_style: true
+  - attr_list
+  - md_in_html
+  - tables
+  - footnotes
+  - def_list
+  - abbr
+  - pymdownx.arithmatex:
+      generic: true
+
+extra_javascript:
+  - https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js
+  - js/mermaid-init.js
+  - js/mathjax.js
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+extra_css:
+  - css/myCss.css
+
+nav:
+  - Home: index.md
+  - "Foundations":
+    - "Roles & Responsibilities": 01-roles-responsibilities.md
+    - "Software Architect": 01.01-software-architect.md
+    - "Principal Engineer": 01.02-principal-engineer.md
+    - "Engineering Manager": 01.03-engineering-manager.md
+    - "Architecture Diagramming": 02-architecture-diagramming.md
+    - "C4 Model": 02.01-c4-model.md
+    - "UML for Architects": 02.02-uml-architects.md
+    - "ArchiMate": 02.03-archimate.md
+  - "Architecture & Thinking":
+    - "Architect Thinking": 03-architect-thinking.md
+    - "Architect Personalities": 03.01-architect-personalities.md
+    - "The 4Cs of Architecture": 03.02-four-cs-architecture.md
+    - "Team Effectiveness": 04-team-effectiveness.md
+    - "Diffusion of Responsibility": 04.01-diffusion-responsibility.md
+    - "Team Topologies": 04.02-team-topologies.md
+  - "Leadership & Strategy":
+    - "Negotiation & Stakeholders": 05-negotiation-stakeholders.md
+    - "Engineering at Scale": 06-engineering-at-scale.md
+    - "Technical Leadership": 07-technical-leadership.md
+  - "Interview Scenarios": 08-interview-scenarios.md
