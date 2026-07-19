@@ -35,36 +35,20 @@ The difference between a Senior Engineer and a Principal Engineer is not *depth*
 
 ---
 
-## Learning Path
-
-### Phase 1 — Conceptual Foundation (Sections 01–03)
-Understand **what the role actually is** before diving into patterns. Many engineers fail principal-level interviews because they answer as senior engineers — technically correct but without the organisational scope the role demands.
-
-### Phase 2 — People & Systems (Sections 04–05)
-Architecture is a **sociotechnical** discipline. Half the evaluation in a principal-level loop is about how you work *with* people — teams, business stakeholders, and organisation structures.
-
-### Phase 3 — Scale & Leadership (Sections 06–07)
-Demonstrate that you understand systems at **organisational scale** — not just distributed system patterns, but how decisions propagate through an engineering organisation.
-
-### Phase 4 — Interview Execution (Section 08)
-Synthetic practice through realistic scenarios. Use the prior three phases as vocabulary.
-
----
-
 ## What Principal-Level Interviews Actually Evaluate
 
 !!! warning "The common failure mode"
     Most candidates who fail principal-level loops are **technically strong but scope-limited**. They solve the coding or design problem brilliantly, but fail to show the system-wide, cross-team, long-horizon thinking the role demands.
 
-| Evaluation Dimension | What They're Looking For |
-|:---|:---|
-| **Technical breadth** | Can you reason across the full stack — infra, data, security, APIs? |
-| **Technical depth** | Can you go deep on at least 2–3 domains when pressed? |
-| **Design thinking** | Do you start from constraints and trade-offs, not solutions? |
-| **Communication** | Can you make a complex system legible to a VP in 5 minutes? |
-| **Influence without authority** | Can you align engineers who don't report to you? |
-| **Long-term thinking** | Do you see how today's decision creates tomorrow's debt? |
-| **Organisational awareness** | Do you understand how Conway's Law shapes what you build? |
+| Evaluation Dimension            | What They're Looking For                                            |
+|:--------------------------------|:--------------------------------------------------------------------|
+| **Technical breadth**           | Can you reason across the full stack — infra, data, security, APIs? |
+| **Technical depth**             | Can you go deep on at least 2–3 domains when pressed?               |
+| **Design thinking**             | Do you start from constraints and trade-offs, not solutions?        |
+| **Communication**               | Can you make a complex system legible to a VP in 5 minutes?         |
+| **Influence without authority** | Can you align engineers who don't report to you?                    |
+| **Long-term thinking**          | Do you see how today's decision creates tomorrow's debt?            |
+| **Organisational awareness**    | Do you understand how Conway's Law shapes what you build?           |
 
 ---
 
