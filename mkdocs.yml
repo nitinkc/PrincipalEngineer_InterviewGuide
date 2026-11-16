@@ -1,88 +1,147 @@
-site_name: Principal Engineer - Interview Guide
-site_description: Comprehensive theoretical knowledge base for Principal Software Engineering roles — architecture, leadership, team dynamics, and systems thinking at scale.
+site_name: Principal Engineer — Interview Guide
+site_description: Source-reviewed, active-recall knowledge base for Principal Software Engineering, Software Architect, and Engineering Manager interviews — systems thinking, architecture, organizational topology, and technical leadership at scale.
 site_author: Nitin Kumar Chaurasia
 site_url: https://nitinkc.github.io/PrincipalEngineer_InterviewGuide/
 repo_url: https://github.com/nitinkc/PrincipalEngineer_InterviewGuide
+repo_name: nitinkc/PrincipalEngineer_InterviewGuide
+edit_uri: edit/main/docs/
 
 theme:
   name: material
-  palette:
-    - scheme: default
-      primary: cyan
-      accent: red
-      toggle:
-        icon: material/lightbulb-outline
-        name: Switch to dark mode
-    - scheme: slate
-      primary: amber
-      accent: red
-      toggle:
-        icon: material/lightbulb
-        name: Switch to light mode
+  language: en
+  font:
+    text: Inter
+    code: JetBrains Mono
+  icon:
+    repo: fontawesome/brands/github
+    logo: material/compass-outline
   features:
-    - navigation.instant
+    # Navigation
     - navigation.tabs
     - navigation.tabs.sticky
     - navigation.sections
-#    - toc.integrate
-#    - header.autohide
+    - navigation.expand
+    - navigation.path
+    - navigation.top
+    - navigation.footer
+    - navigation.tracking
+    - navigation.indexes
+    - toc.follow
+    # navigation.instant disabled — breaks live reload (re-enable for production builds)
+    # - navigation.instant
+    # - navigation.instant.progress
+    # Search
+    - search.suggest
+    - search.highlight
+    - search.share
+    # Content
+    - content.code.copy
     - content.code.annotate
+    - content.tabs.link
+    - content.tooltips
+    - content.footnote.tooltips
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: brown
+      accent: blue
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: brown
+      accent: blue
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
 
 plugins:
-  - search
+  - search:
+      lang: en
+      separator: '[\s\-,:!=\[\]()"/]+|(?!\b)(?=[A-Z][a-z])|\.(?!\d)|&[lg]t;'
+  - mkdocs_quiz:
+      enabled_by_default: false
+      auto_number: true
+      show_correct: true
+      auto_submit: false
+      disable_after_submit: true
+      shuffle_answers: false
+      show_progress: true
+      confetti: false
+      embed_source: false
+  - mermaid2:
+      version: 11.17.2
+  - glightbox
+  - tags
 
 markdown_extensions:
   - admonition
   - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+      use_pygments: true
+      guess_lang: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
   - pymdownx.superfences:
       custom_fences:
         - name: mermaid
           class: mermaid
-          format: !!python/name:pymdownx.superfences.fence_div_format
-  - pymdownx.highlight:
-      anchor_linenums: true
-  - pymdownx.inlinehilite
-  - pymdownx.snippets
+          format: !!python/name:mermaid2.fence_mermaid_custom
   - pymdownx.tabbed:
       alternate_style: true
+      combine_header_slug: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - toc:
+      permalink: true
+      title: On this page
+      toc_depth: 3
+  - abbr
   - attr_list
   - md_in_html
+  - pymdownx.snippets:
+      base_path: docs
   - tables
   - footnotes
   - def_list
-  - abbr
-  - pymdownx.arithmatex:
-      generic: true
-
-extra_javascript:
-  - https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js
-  - js/mermaid-init.js
-  - js/mathjax.js
-  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 
 extra_css:
   - css/myCss.css
 
 nav:
   - Home: index.md
-  - "Foundations":
-    - "Roles & Responsibilities": 01-roles-responsibilities.md
-    - "Software Architect": 01.01-software-architect.md
-    - "Principal Engineer": 01.02-principal-engineer.md
-    - "Engineering Manager": 01.03-engineering-manager.md
-    - "Architecture Diagramming": 02-architecture-diagramming.md
-    - "C4 Model": 02.01-c4-model.md
-    - "UML for Architects": 02.02-uml-architects.md
-    - "ArchiMate": 02.03-archimate.md
-  - "Architecture & Thinking":
-    - "Architect Thinking": 03-architect-thinking.md
-    - "Architect Personalities": 03.01-architect-personalities.md
-    - "The 4Cs of Architecture": 03.02-four-cs-architecture.md
-    - "Team Effectiveness": 04-team-effectiveness.md
-    - "Diffusion of Responsibility": 04.01-diffusion-responsibility.md
-    - "Team Topologies": 04.02-team-topologies.md
-  - "Leadership & Strategy":
-    - "Negotiation & Stakeholders": 05-negotiation-stakeholders.md
-    - "Engineering at Scale": 06-engineering-at-scale.md
-    - "Technical Leadership": 07-technical-leadership.md
-  - "Interview Scenarios": 08-interview-scenarios.md
+  - "01 · Roles & Foundations":
+    - "01 · Roles & Foundations": 01-roles-responsibilities.md
+    - "01.01 · Software Architect": 01.01-software-architect.md
+    - "01.02 · Principal Engineer": 01.02-principal-engineer.md
+    - "01.03 · Engineering Manager": 01.03-engineering-manager.md
+  - "02–03 · Architecture & Thinking":
+    - "02 · Architecture Diagramming":
+      - "02 · Architecture Diagramming": 02-architecture-diagramming.md
+      - "02.01 · C4 Model": 02.01-c4-model.md
+      - "02.02 · UML for Architects": 02.02-uml-architects.md
+      - "02.03 · ArchiMate": 02.03-archimate.md
+    - "03 · Architect Thinking":
+      - "03 · Architect Thinking": 03-architect-thinking.md
+      - "03.01 · Architect Personalities": 03.01-architect-personalities.md
+      - "03.02 · The 4Cs of Architecture": 03.02-four-cs-architecture.md
+  - "04–05 · Teams & Stakeholders":
+    - "04 · Team Effectiveness":
+      - "04 · Team Effectiveness": 04-team-effectiveness.md
+      - "04.01 · Diffusion of Responsibility": 04.01-diffusion-responsibility.md
+      - "04.02 · Team Topologies": 04.02-team-topologies.md
+    - "05 · Negotiation & Stakeholders": 05-negotiation-stakeholders.md
+  - "06–07 · Scale & Leadership":
+    - "06 · Engineering at Scale": 06-engineering-at-scale.md
+    - "07 · Technical Leadership": 07-technical-leadership.md
+  - "08 · Interview Playbook":
+    - "08 · Interview Playbook": 08-interview-scenarios.md
+  - Topics: tags.md

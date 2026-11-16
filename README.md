@@ -1,82 +1,72 @@
-# Principal Engineer Interview Prep
+# Principal Engineer — Interview Guide
 
-A comprehensive MkDocs-powered knowledge base for preparing for Principal Software Engineer, Software Architect, and Engineering Manager roles. Topics cover architecture, technical leadership, team dynamics, and systems thinking at scale.
+A source-reviewed, active-recall **MkDocs Material** knowledge base for **Principal Software Engineer**, **Software Architect**, and **Engineering Manager** interview preparation.
 
-## 📚 Topics Covered
+Live site: **[https://nitinkc.github.io/PrincipalEngineer_InterviewGuide/](https://nitinkc.github.io/PrincipalEngineer_InterviewGuide/)**
 
-| Section | Description |
-|---|---|
-| 01 · Roles & Responsibilities | Software Architect, Principal Engineer, and Engineering Manager deep dives |
-| 02 · Architecture Diagramming | C4 Model, UML for Architects, ArchiMate |
-| 03 · Architect Thinking | Architect Personalities, The 4Cs of Architecture |
-| 04 · Team Effectiveness | Diffusion of Responsibility, Team Topologies |
-| 05 · Negotiation & Stakeholders | Influencing without authority, stakeholder management |
-| 06 · Engineering at Scale | Scaling systems and engineering organizations |
-| 07 · Technical Leadership | Leading technical vision and strategy |
-| 08 · Interview Scenarios | Common interview questions and scenario walkthroughs |
+> **Content review:** 15 November 2026. Standards and fast-moving guidance are checked against primary sources linked in the relevant chapters. Company levels, team sizes, time allocations, performance numbers, and technology examples are illustrative—not universal benchmarks.
 
-## 🚀 Getting Started
+---
+
+## Architecture & Knowledge Pillars
+
+| Section | Pillar | Key Frameworks & Mental Models |
+|:---|:---|:---|
+| **01** | **Roles & Foundations** | Principal Engineer (`01.02`) vs. Software Architect (`01.01`) vs. Engineering Manager (`01.03`), ADRs, SEI Quality Attribute Scenarios, 4+1 Views, Fitness Functions |
+| **02** | **Architecture Diagramming** | C4 Model (`02.01`), High-Leverage UML (`02.02` — Sequence, State Machine, DDD Class, Activity), ArchiMate 3.2 Core & Enterprise Views (`02.03`) |
+| **03** | **Architect Thinking** | Richards & Ford's First & Second Laws, a self-assessment lens for architect styles (`03.01`), this guide's 4Cs Decision Funnel & Weighted Trade-Off Matrices (`03.02`) |
+| **04** | **Team Effectiveness** | Conway's Law & Inverse Conway Manoeuvre, Psychological Safety, Diffusion of Responsibility & Named Coordination (`04.01`), Team Topologies (`04.02`), current five-metric DORA model + SPACE |
+| **05** | **Negotiation & Stakeholders** | Fisher & Ury Principled Negotiation, 3-Option Trade-Off Menus, Stakeholder Power × Interest Grid, Tech Debt ROI & FinOps Unit Economics, Canonical RFC Template |
+| **06** | **Engineering at Scale** | CAP & PACELC without ACID conflation, 8 Fallacies, Multi-Tier Caching, Sharding & Resharding, Cell-Based Architecture, Production AI/LLM Security & Evals, Expand-and-Contract |
+| **07** | **Technical Leadership** | Will Larson's 4 Staff+ Archetypes, Rumelt's Strategy Kernel, Technical Vision Template, Fowler's Tech Debt Quadrant & Register, Sponsorship, Blameless Post-Mortems, Technology Radar |
+| **08** | **Interview Playbook** | 5-Step Principal System Design Loop, Decision-Driven Estimation, End-to-End Walkthroughs, `STAR-L` Behavioral Rubric, Architecture Critique Checklist |
+
+---
+
+## Learnability Features
+
+- **Study Metadata & Reading Time:** Level, estimated reading time, and track alignment at the top of every page.
+- **`TL;DR` Executive Abstracts (`!!! abstract`):** A concise synthesis before the details.
+- **Senior vs. Principal Calibration (`=== "Tabs"`):** Side-by-side comparisons of local and organizational framing.
+- **Active Recall Prompts (`??? question`):** Collapsible interview questions with hidden answer rubrics.
+- **Plugin-Rendered Mermaid Diagrams:** `mkdocs-mermaid2-plugin` uses its Material-compatible custom fence; no project-maintained JavaScript is required.
+- **Interactive Knowledge Checks:** `mkdocs_quiz` powers home-page quizzes; chapter prompts remain lightweight native recall exercises.
+- **Topic Discovery & Images:** Material's tags plugin provides a topic index, and `mkdocs-glightbox` enables zoomable images.
+- **Verified Source Links:** Time-sensitive standards and current practices link to primary documentation rather than unsupported version or benchmark claims.
+
+---
+
+## Local Development
 
 ### Prerequisites
 
-- Python 3.8+
-- pip
+- [uv](https://docs.astral.sh/uv/)
+- Python 3.11.5 or newer; Python 3.13 is recommended and used in CI
 
-### Setup
-
-```bash
-# 1. Create and activate a virtual environment
-python3 -m venv .venv
-source .venv/bin/activate
-
-# 2. Install dependencies
-pip install -r requirements.txt
-
-# 3. Serve the docs locally
-mkdocs serve
-```
-
-Open your browser at [http://127.0.0.1:8000](http://127.0.0.1:8000).
-
-### Build Static Site
+### Quick Start
 
 ```bash
-mkdocs build
+# 1. Create an isolated environment
+uv venv --python 3.13
+
+# 2. Install the reviewed dependency versions
+uv pip install --python .venv/bin/python -r requirements.txt
+
+# 3. Preview locally with live reload
+uv run --no-project mkdocs serve
 ```
 
-Output will be in the `site/` directory.
+Open **[http://127.0.0.1:8000](http://127.0.0.1:8000)** in your browser. Instant navigation is intentionally disabled during live reload.
 
-## 🛠️ Tech Stack
+### Validation
 
-- **[MkDocs](https://www.mkdocs.org/)** — static site generator for documentation
-- **[mkdocs-material](https://squidfunk.github.io/mkdocs-material/)** — Material Design theme
-- **[pymdown-extensions](https://facelessuser.github.io/pymdown-extensions/)** — enhanced Markdown features (admonitions, tabs, superfences, etc.)
-- **[Mermaid.js](https://mermaid.js.org/)** — diagram rendering in Markdown
-- **[MathJax](https://www.mathjax.org/)** — mathematical notation rendering
-
-## 📁 Project Structure
-
-```
-principal-engineer-prep/
-├── docs/                   # Markdown source files
-│   ├── index.md            # Home page
-│   ├── 01-*.md             # Roles & Responsibilities
-│   ├── 02-*.md             # Architecture Diagramming
-│   ├── 03-*.md             # Architect Thinking
-│   ├── 04-*.md             # Team Effectiveness
-│   ├── 05-*.md             # Negotiation & Stakeholders
-│   ├── 06-*.md             # Engineering at Scale
-│   ├── 07-*.md             # Technical Leadership
-│   ├── 08-*.md             # Interview Scenarios
-│   └── js/                 # Custom JavaScript (Mermaid, MathJax init)
-├── mkdocs.yml              # MkDocs configuration
-├── requirements.txt        # Python dependencies
-└── README.md               # This file
+```bash
+uv pip check --python .venv/bin/python
+uv run --no-project mkdocs build --clean --strict
 ```
 
-## ✏️ Contributing / Adding Content
+Direct dependencies are pinned in `requirements.txt` so local and CI builds resolve the same reviewed versions. Update them deliberately, then rerun both checks.
 
-1. Add a new `.md` file under `docs/`.
-2. Register it in the `nav` section of `mkdocs.yml`.
-3. Run `mkdocs serve` to preview your changes.
+## MkDocs Material Lifecycle
 
+Material for MkDocs 9.8.1 requires Python 3.11+ and is in maintenance mode. Upstream will provide critical fixes and security updates through **5 May 2027**. This project intentionally remains on MkDocs for now; evaluate **[Zensical](https://zensical.org/docs/compatibility/mkdocs/migration/)** separately and compare plugin compatibility, rendered diagrams, quizzes, search, and styling before any migration.

@@ -1,5 +1,6 @@
-mkdocs<2.0
-pymdown-extensions>=10.8
-mkdocs-material==9.5.0
-Markdown>=3.6
-mkdocs-bootswatch==1.1
+mkdocs==1.6.1
+mkdocs-material==9.8.1
+pymdown-extensions==12.3
+mkdocs-mermaid2-plugin==1.2.3
+mkdocs_quiz==1.7.1
+mkdocs-glightbox==0.5.3

@@ -1,274 +1,204 @@
+---
+tags:
+  - Technical Leadership
+  - Engineering Strategy
+  - Technical Debt
+---
+
 # 07 · Technical Leadership
 
-> **Level:** Advanced — Leadership & Influence
-> **Pre-reading:** [01 · Roles & Responsibilities](01-roles-responsibilities.md) · [04 · Team Effectiveness](04-team-effectiveness.md) · [05 · Negotiation & Stakeholders](05-negotiation-stakeholders.md)
+> **Level:** Advanced — Leadership & Influence · **Reading Time:** ~12 mins · **Track:** Org & Leadership
+> **Prerequisites:** [01 · Roles & Responsibilities](01-roles-responsibilities.md) · [04 · Team Effectiveness](04-team-effectiveness.md) · [05 · Negotiation & Stakeholders](05-negotiation-stakeholders.md)
 
-Technical leadership is the practice of **shaping the technical direction of an organisation through influence, vision, and the systematic raising of engineering quality** — without the authority of line management. It is what distinguishes a Principal Engineer from a brilliant Senior Engineer.
+Technical leadership shapes technical direction, engineering culture, and systemic quality through vision, standards, and mentorship—without relying solely on line-management authority.
+
+!!! abstract "TL;DR — The 30-Second Mental Model"
+    - **Know Your Staff+ Archetype:** Will Larson's **Tech Lead**, **Architect**, **Solver**, and **Right Hand** are useful operating patterns, not a levelling checklist.
+    - **Technical Vision = Coherent Autonomy:** Give teams a diagnosis, guiding principles, strategic bets, non-goals, and measurable outcomes so local decisions align without micromanagement.
+    - **Govern Debt and Technology by Evidence:** Track ongoing drag and risk, fund work through explicit trade-offs and SLO/error-budget policy, and avoid universal “20% capacity” or arbitrary innovation quotas.
 
 ---
 
-## What Technical Leadership Is Not
+## What Technical Leadership Is (and Is Not)
 
-| Common misconception | What it actually means |
+|| Common Misconception (Local Lens) | Principal Reality (System Lens) |
 |:---|:---|
-| "The best coder on the team" | Code output is often inversely correlated with leadership impact at this level |
-| "Makes all the important technical decisions" | Good technical leaders make *fewer* decisions by empowering others to make more of them |
-| "The person who reviews all PRs" | That is a bottleneck, not leadership |
-| "The most opinionated person in the room" | Leadership requires listening before deciding |
-| "Saying yes to every technical request" | Saying *no* clearly and with reasoning is one of the most important skills |
+|| *"Take every hardest ticket"* | Create leverage so others can solve hard problems safely |
+|| *"Make every major decision yourself"* | Design principles, decision rights, and paved roads that scale judgment |
+|| *"Review every PR across ten repositories"* | Automate invariants and coach maintainers to uphold the bar |
+|| *"Be the loudest voice in review"* | Surface hidden constraints, create clarity, and help the group update on evidence |
 
 ---
 
-## The Staff Engineer Archetypes (Will Larson)
+## The Four Staff+ Archetypes (Will Larson)
 
-Will Larson's *Staff Engineer* (2021) identifies four common archetypes for how staff/principal engineers operate. Understanding these helps you identify your natural mode and develop the others.
+In [*Staff Engineer: Leadership Beyond the Management Track*](https://staffeng.com/guides/staff-archetypes/), Will Larson describes four common operating patterns:
 
 ```mermaid
 graph TD
-    TL[Tech Lead\nGuide team's technical vision\nand execution]
-    AR[Architect\nOwn direction in critical technical domains\nacross many teams]
-    SO[Solver\nDig into hard, ambiguous\nproblems and solve them]
-    RM[Right Hand\nCoordinate complex org-wide\ninitiatives for senior leaders]
+    TL["1. Tech Lead<br/>Guides a team's technical<br/>approach and execution"]
+    AR["2. Architect<br/>Owns direction, quality, and approach<br/>within a critical technical area"]
+    SO["3. Solver<br/>Finds paths through<br/>arbitrarily complex problems"]
+    RH["4. Right Hand<br/>Extends an executive's attention<br/>across complex organizational work"]
 
     style TL fill:#1976D2,color:#fff
     style AR fill:#388E3C,color:#fff
     style SO fill:#F57C00,color:#fff
-    style RM fill:#7B1FA2,color:#fff
+    style RH fill:#7B1FA2,color:#fff
 ```
 
-| Archetype | Primary mode | Great at | Risk |
-|:---|:---|:---|:---|
-| **Tech Lead** | Guiding a team's execution | Delivery, code quality, team velocity | Scope stays team-level; doesn't scale beyond one team |
-| **Architect** | Setting cross-team technical direction | Long-term system coherence, API contracts, standards | Ivory tower — out of touch with implementation reality |
-| **Solver** | Unblocking the hardest technical problems | Deep technical impact when and where it matters most | Impact is episodic; hard to show continuous org-level value |
-| **Right Hand** | Organisational coordination and execution | Cross-cutting changes, org-wide initiatives | Too much time in meetings; technical skills atrophy |
+|| Archetype | Core Charter | Primary Failure Mode |
+|:---|:---|:---|
+|| **Tech Lead** | Partner closely with engineering management to guide a team or focused area | Scope stays at execution; crowds out other technical leaders |
+|| **Architect** | Combine technical constraints, user needs, and organizational leadership in a critical area | Ivory-tower direction without prototypes, operating feedback, or migration realism |
+|| **Solver** | Dig into complex hotspots, sometimes in one area and sometimes across the organization | Episodic hero work leaves no durable capability or shared context |
+|| **Right Hand** | Extend a senior executive's attention, scope, and authority | Proxy authority replaces technical credibility; calendar loses contact with implementation reality |
 
-### Which archetype does which company need?
-
-| Company stage | Most needed archetype |
-|:---|:---|
-| Early startup (< 50 engineers) | Tech Lead — get things built |
-| Growth stage (50–200 engineers) | Architect + Solver — set foundations while solving fires |
-| Large org (200+ engineers) | All four — explicitly define which role is needed |
+A role can blend patterns, and the useful question is **what the current charter needs**, not which label sounds most senior.
 
 ---
 
-## The Technical Vision Document
+## Authoring a Multi-Year Technical Vision
 
-A Principal Engineer's most durable output is a **technical vision** — a written description of the desired state of the system and organisation 2–5 years from now, and the path to get there.
+A technical vision usually spans 18–36 months with a shorter review cadence. Applying Richard Rumelt's strategy kernel means combining **diagnosis**, **guiding policy**, and **coherent actions**—not publishing a target-state diagram alone.
 
-### Why it matters
-- Enables independent decision-making by teams without constant consultation
-- Aligns dozens of teams around a shared direction without heavy governance
-- Provides a framework for evaluating trade-offs consistently
-- Creates organisational memory that survives personnel changes
-
-### Structure of a Technical Vision Document
+### Canonical Technical Vision Template
 
 ```markdown
-# Technical Vision — {System/Domain Name}
+# Technical Vision: {Domain / Platform Name} ({YYYY}–{YYYY})
 
-**Owner:** {Principal Engineer Name}
-**Date:** {Date} | **Horizon:** {e.g., 2025–2027}
-**Status:** Draft | Under Review | Adopted
+- **Executive Sponsor:** {Role} · **Lead Author:** {Role}
+- **Status:** Draft | Adopted · **Review Cadence:** {Quarterly / Bi-annual}
+- **Evidence Baseline & Last Review:** {Links and date}
 
----
-
-## 1. Context
-What is the current state? What business challenges does this vision respond to?
+## 1. Diagnosis
+Data-backed assessment of current constraints, what changes at the next scale horizon,
+and which assumptions remain uncertain.
 
 ## 2. Target State
-What does great look like in 3 years? (Not how — what)
+Observable customer, developer, operational, security, and financial behavior—not a product list.
 
-## 3. Principles
-What principles guide our decisions on the path? (3–7 specific, non-obvious principles)
+## 3. Guiding Principles (Trade-Off Tie-Breakers)
+3–5 opinionated rules with valid alternatives and explicit exceptions.
 
-## 4. Strategic Bets
-What are the 3–5 major architectural choices we are committing to? Why?
+## 4. Strategic Bets & Explicit Non-Goals
+What we will and will not fund, and which options we intentionally preserve or retire.
 
-## 5. What We Are NOT Doing
-Explicit de-prioritisation — as important as what is included
+## 5. Coherent Actions (Now / Next / Later)
+Sequenced capabilities, migration plateaus, owners, dependencies, and decommission work.
 
-## 6. Migration Path
-How do we get from current state to target state? Phases, milestones, decision points.
+## 6. Leading & Lagging Success Measures
+Customer outcomes, SLOs, delivery flow, adoption, risk exposure, and business unit cost.
 
-## 7. Success Metrics
-How will we know we are on track? (DORA metrics, quality attributes measured)
+## 7. Review & Reversal Triggers
+Which evidence would cause us to accelerate, pause, or reverse each strategic bet?
 ```
+
+!!! tip "The 'Opposite Test' for Architectural Principles"
+    A principle is weak if its opposite is absurd (*"We build reliable software"*). A useful principle has a reasonable alternative another organization might choose, such as *"We accept provider-specific managed services to reduce operating load, except where measured portability or regulatory constraints outweigh that benefit."*
+
+### Principle Examples That Need Context, Not Dogma
+
+- **Managed services by default:** Compare total cost of ownership, reliability, staffing, data obligations, and exit cost—not an arbitrary annual-spend threshold.
+- **Async for facts; sync for immediate decisions:** Use events for durable facts/notifications and synchronous calls when a response is required now. Do not ban synchronous commands or imply async removes failure handling.
+- **Compatibility by default:** Public APIs and event schemas pass automated consumer/compatibility checks, with an explicit migration and deprecation policy.
 
 ---
 
-## Technical Debt Governance
+## Technical Debt Governance at Scale
 
-Technical debt is **inevitable** — the discipline is in making it visible, intentional, and managed.
+Technical debt is a metaphor for design deficiencies and their ongoing cost. It is most useful when tied to changed capability, risk, and evidence—not used to label every disliked codebase.
 
-### The Technical Debt Quadrant (Martin Fowler)
+### Martin Fowler's Technical Debt Quadrant
 
+```mermaid
+quadrantChart
+    title Martin Fowler's Technical Debt Quadrant
+    x-axis "Inadvertent (Unintentional)" --> "Deliberate (Intentional)"
+    y-axis "Reckless (No Engineering Discipline)" --> "Prudent (Risk-Aware Engineering)"
+    quadrant-1 "Prudent & Deliberate: Ship now; record risk and review trigger"
+    quadrant-2 "Prudent & Inadvertent: New evidence reveals the better boundary"
+    quadrant-3 "Reckless & Inadvertent: Skill or feedback gap"
+    quadrant-4 "Reckless & Deliberate: Corner cut without understanding the risk"
+    "Prudent Deliberate": [0.75, 0.78]
+    "Prudent Inadvertent": [0.25, 0.78]
+    "Reckless Inadvertent": [0.25, 0.22]
+    "Reckless Deliberate": [0.75, 0.22]
 ```
-                    DELIBERATE          INADVERTENT
-                ┌──────────────────┬──────────────────┐
-                │                  │                  │
-  RECKLESS      │  "We don't have  │  "What's layered │
-                │  time to design" │  architecture?"  │
-                │                  │                  │
-                ├──────────────────┼──────────────────┤
-                │                  │                  │
-  PRUDENT       │  "We must ship   │  "Now we know    │
-                │  now; we'll fix  │  how we should   │
-                │  later"          │  have done it"   │
-                │                  │                  │
-                └──────────────────┴──────────────────┘
-```
 
-| Quadrant | Description | Response |
-|:---|:---|:---|
-| **Reckless + Deliberate** | Knowingly bypassing good practices | Unacceptable; prevent through standards and gates |
-| **Reckless + Inadvertent** | Bad practices from ignorance | Fix through mentoring, code review, standards |
-| **Prudent + Deliberate** | Knowingly ship now, plan to fix | Acceptable — must create the ADR and schedule the fix |
-| **Prudent + Inadvertent** | Learn better ways after the fact | Expected — capture learnings in ADR, fix in next iteration |
+|| Quadrant | Principal Engineer Intervention |
+|:---|:---|
+|| **Prudent & Deliberate** | Record rationale, accepted downside, and review/payoff trigger; not every item needs immediate repayment |
+|| **Prudent & Inadvertent** | Treat improved understanding as learning; refactor where ongoing change and evidence justify it |
+|| **Reckless & Deliberate** | Make risk visible, stop unsafe bypasses, and align leadership on explicit non-negotiables |
+|| **Reckless & Inadvertent** | Improve feedback, pairing, design coaching, and enabling-team support |
 
-### The Technical Debt Register
+See Fowler's [Technical Debt Quadrant](https://www.martinfowler.com/bliki/TechnicalDebtQuadrant.html) and [Technical Debt](https://martinfowler.com/bliki/TechnicalDebt.html), including his point that stable, rarely changed “cruft” may not deserve the same priority as frequently changed code.
 
-A principal engineer should advocate for a **Technical Debt Register** — a maintained, visible inventory of known technical debt:
+### Maintaining an Org-Wide Technical Debt Register
 
-| ID | Component | Debt Description | Type | Business Impact | Estimated Cost to Fix | Priority |
-|:---|:---|:---|:---|:---|:---|:---|
-| TD-001 | Auth Service | No token revocation mechanism | Security | High — cannot invalidate compromised tokens | 2 weeks | P1 |
-| TD-002 | Order DB | Schema does not support multi-tenancy | Architecture | Blocks enterprise tier | 3 months | P2 |
-| TD-003 | CI Pipeline | No canary deployment support | Infrastructure | All releases are big-bang | 4 weeks | P2 |
+Treat major debt as a portfolio of risks and options. The values below are illustrative placeholders:
+
+|| ID | Affected Domain | Evidence of Ongoing Drag / Risk | Blast Radius | Remediation & Migration Risk | Next Review Trigger |
+|:---|:---|:---|:---|:---|:---|
+|| `TD-01` | Identity / Auth | Legacy tokens lack required revocation behavior; enterprise control gap | Security / tenant data | Rotation, compatibility, and rollout plan | Before new enterprise SSO launch |
+|| `TD-02` | Orders DB | Measured lock/vacuum behavior repeatedly consumes checkout error budget | Revenue / availability | Backfill, dual-read, cutover, rollback | At next capacity or SLO review |
+|| `TD-03` | CI Pipeline | Measured queue and test time delays every change; frequent rerun rework | Delivery flow | Shard/rework tests without reducing signal | After test-fidelity baseline improves |
 
 ---
 
-## Influence Without Authority
-
-The defining challenge of Technical Leadership is achieving change **without the ability to command it**. This requires a distinct set of skills from management.
-
-### The Influence Model
+## Growing the Next Generation: The Sponsorship Ladder
 
 ```mermaid
 graph LR
-    TC["Technical Credibility\nThis person knows what they are talking about"] --> T[Trust]
-    RE["Relationship\nThis person cares about my success"] --> T
-    T --> I["Influence\nPeople adopt your ideas,\npractices, and direction"]
-
-    I --> C["Consistency\nThey follow through on what they say"]
-    C --> T
+    S1["1. Expose<br/>Invite to real decision forums"] --> S2["2. Explain<br/>Make trade-off reasoning visible"]
+    S2 --> S3["3. Co-Author<br/>Delegate meaningful sections"]
+    S3 --> S4["4. Delegate<br/>Transfer DRI ownership with support"]
+    S4 --> S5["5. Sponsor<br/>Advocate with evidence<br/>and give public credit"]
 ```
 
-### Influence Tactics That Work at Principal Level
-
-| Tactic | What it looks like | When to use |
-|:---|:---|:---|
-| **Technical demonstration** | Write the proof-of-concept yourself | When words alone won't convince; skeptical engineers |
-| **Data-driven proposal** | Bring metrics, benchmarks, production data | Business stakeholders; cost discussions |
-| **Known champion** | Identify an influential engineer who agrees; amplify their voice | When you have low political capital in that team |
-| **Published standard** | Write the RFC/ADR; get it endorsed by senior leadership | Long-term org-wide adoption |
-| **Joining their work** | Help with *their* problem first; introduce your idea in context | Building relationships in a new team |
-| **Teaching/presentation** | Give an internal tech talk or workshop | Spreading concepts to many engineers simultaneously |
-| **Blameless post-mortem** | Surface the systemic issue from a specific incident | Making abstract architectural concerns concrete |
+Sponsorship is not merely advice: it transfers visible ownership and creates opportunities while preserving a support and escalation path.
 
 ---
 
-## Mentorship and Growing Principal-Level Engineers
+## Operational Excellence: Blameless Post-Mortem Culture
 
-A principal engineer who cannot grow the next generation is hoarding their value rather than multiplying it.
+A Principal Engineer sets the tone for **psychological safety plus rigorous analysis of contributing conditions and safeguards**, consistent with [Google SRE postmortem guidance](https://sre.google/sre-book/postmortem-culture/).
 
-### The Four Stages of Competence (for Mentoring Framework)
+### Five Rules of a Principal-Caliber Post-Mortem
 
-| Stage | Description | How to help |
-|:---|:---|:---|
-| **Unconscious incompetence** | Don't know what they don't know | Expose to new domains; create awareness |
-| **Conscious incompetence** | Know they don't know | Provide resources, context, safe space to learn |
-| **Conscious competence** | Can do it, but requires effort | Pair programming, pointed code review, deliberate practice |
-| **Unconscious competence** | Does it naturally | Give them autonomy; let them teach others |
-
-### Mentoring Ladder
-
-A structured approach to growing engineers toward staff/principal level:
-
-1. **Expose** — invite them to architecture reviews, design sessions, RFC discussions
-2. **Explain** — articulate your reasoning out loud, especially when making trade-off decisions
-3. **Involve** — give them ownership of a component of an RFC or ADR with your guidance
-4. **Delegate** — let them own a complete RFC/ADR; you review and coach
-5. **Sponsor** — actively advocate for their promotion and expanded scope
-
-!!! tip "Sponsorship vs. mentorship"
-    **Mentorship**: you help someone become more capable.
-    **Sponsorship**: you use your reputation capital to open doors for someone.
-    Both are the responsibility of a principal engineer. Sponsorship has more organisational impact but is rarer and requires spending personal capital.
-
----
-
-## The On-Call and Incident Response Culture
-
-A principal engineer shapes how the organisation responds to production incidents.
-
-### Blameless Post-Mortem Structure
-
-```markdown
-# Incident Post-Mortem: {Incident ID}
-
-**Date:** {Date}
-**Severity:** SEV1 | SEV2 | SEV3
-**Duration:** {Start time} → {End time} ({duration})
-**Impact:** {User impact; number of affected users; data affected}
-**Owner:** {Named engineer}
-
----
-
-## Timeline
-| Time | Event |
-|:-----|:------|
-| HH:MM | Alert fired |
-| HH:MM | On-call engineer paged |
-| HH:MM | Root cause identified |
-| HH:MM | Mitigation applied |
-| HH:MM | Service restored |
-
-## Root Cause Analysis
-5 Whys or fishbone: what was the actual root cause?
-
-## Contributing Factors
-What systemic conditions made this possible?
-
-## What Went Well
-What worked during the incident response?
-
-## What Could Be Improved
-Systemic improvements — not personal failures.
-
-## Action Items
-| Action | Owner | Due date | Priority |
-|:-------|:------|:---------|:---------|
-| Add alerting for X | @engineer | {date} | P1 |
-| Implement circuit breaker for Y | @engineer | {date} | P2 |
-```
-
-!!! warning "The blameless principle"
-    Post-mortems that name individuals as root causes are counter-productive. Engineers who made a decision did so with the information available at the time. The system allowed them to make that decision with that information. Fix the system.
+1. **A Human Action Is Not a Sufficient Explanation:** *"Bob ran the wrong script"* is part of the timeline, not the end of analysis. Examine why the action made sense, available information, tooling, safeguards, approvals, and blast-radius controls. “5 Whys” can prompt exploration, but complex incidents rarely have one linear root cause.
+2. **Quantify Impact and the Timeline:** Record trigger, detection, mitigation, restoration, customer/workload impact, and SLO/error-budget effect. Distinguish mitigation from full recovery instead of hiding both behind `MTTR`.
+3. **Record What Worked and What Did Not:** Capture detection, runbooks, rollback, communication, and lucky conditions honestly; do not turn resilience into a story about heroes.
+4. **Create Systemic, Owned Actions:** Each priority action has a DRI, resources, due/review date, and completion evidence. Favor controls that reduce a class of failures over “be more careful.”
+5. **Share and Verify Learning:** Distribute the review appropriately, track action effectiveness, and test whether other services share the same conditions. Blameless does not mean accountability-free or consequence-free for deliberate policy violations.
 
 ---
 
 ## Technology Radar — Governing the Technology Portfolio
 
-The **Technology Radar** (popularised by ThoughtWorks) is a tool for visualising an organisation's technology portfolio and providing guidance on adoption.
+A [Technology Radar](https://www.thoughtworks.com/radar) can make adoption, experimentation, and retirement decisions visible. The following **example entries are not universal recommendations**; build your radar from your own workload, skills, support, security, and exit-cost evidence.
 
-### Four Rings
+|| Radar Ring | Policy | Illustrative Entry Shape |
+|:---|:---|:---|
+|| **Adopt (Golden Path)** | Supported default with templates, operations, security, upgrades, and success measures | A small set of proven languages, stores, telemetry, and delivery patterns |
+|| **Trial (Bounded Production)** | One or a few bounded use cases with an owner, hypothesis, SLOs, and exit criteria | A workflow engine or language evaluated where its specific advantage matters |
+|| **Assess (Discovery)** | Time-boxed non-production research with a documented question | Wasm extension model, a new retrieval/index approach, or an emerging protocol |
+|| **Hold (Retire / Constrain)** | No new adoption unless an explicit exception is approved; existing instances have an owner and migration plan | Unmaintained internal frameworks or versions outside the supported lifecycle |
 
-| Ring | Meaning |
-|:---|:---|
-| **Adopt** | Technologies we use in production and recommend for new projects |
-| **Trial** | Technologies we're evaluating in limited production contexts |
-| **Assess** | Technologies worth understanding; not yet tried in production |
-| **Hold** | Technologies we are moving away from; do not use for new work |
+Radar reviews must include **decommissioning, data migration, staffing, security support, and total cost**, not just developer preference.
 
-### Four Quadrants
+---
 
-| Quadrant | Examples |
-|:---|:---|
-| **Languages & Frameworks** | Java 21, Python 3.12, React, FastAPI |
-| **Tools** | Terraform, Helm, Grafana, ArgoCD |
-| **Platforms** | Kubernetes, AWS, GCP, Snowflake |
-| **Techniques** | DORA metrics, trunk-based development, fitness functions |
+## Active Recall & Self-Check
 
-A principal engineer should be able to **justify where every significant technology in their domain sits** on the radar, and why.
+??? question "Self-Check 1: How do you curb resume-driven technology adoption without becoming the 'Department of No'?"
+    **Answer Rubric:**
+    1. Co-create a transparent radar and decision rights with the engineers who will operate the choices.
+    2. Make Adopt paths genuinely easier through self-service provisioning, observability, security, upgrades, and on-call support.
+    3. Require a Trial RFC with a measurable hypothesis, the reason current defaults cannot meet it, bounded production scope, total operating cost, staffing/support, evaluation criteria, and an exit/migration plan. Do not impose an arbitrary `2×` superiority threshold.
+    4. Review outcomes and move the technology to Adopt, revise the trial, or retire it—including deletion and knowledge transfer.
+
+??? question "Self-Check 2: A manager says, 'The root cause was Bob forgetting Region B's config.' How do you reframe it?"
+    **Answer Rubric:**
+    *"Bob's action belongs in the timeline, but the system required synchronized manual edits and allowed one omission to become an outage. Let's examine the deployment design, validation, information available to Bob, and why drift was not detected. A candidate action is automated, reviewed configuration delivery with canary checks and drift detection; we should verify that it addresses the contributing conditions rather than assuming automation alone is sufficient."*
